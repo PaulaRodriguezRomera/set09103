@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Word Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Word Generator</h1>
+    <form method="POST" action="/generate_word">
+        <button type="submit">Get New Words</button>
+    </form>
+    {% if random_word %}
+    <p>Output: {{ random_word }}</p>
+    {% endif %}
+</body>
+</html>
+

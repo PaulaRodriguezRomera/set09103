@@ -1,0 +1,30 @@
+/* styles.css */
+
+/* Change the font size of the h1 element */
+h1 {
+    font-size: 30px;
+    font-family: "Verdana";
+    color: #30799B;
+}
+
+/* Background color to the button */
+button {
+    background-color: #30799B;
+    color: #fff;
+    border-radius: 30px;
+    padding: 5px;
+    margin: 5px;
+}
+
+/* Style the paragraph displaying the random word */
+p {
+    font-weight: bold;
+    color: coral;
+    font-size: 30px;
+}
+
+/* Align body text to the center */
+
+body {
+    text-align: center;
+}
