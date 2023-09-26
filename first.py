@@ -1,4 +1,4 @@
-from flask import Flask, url_for, request
+from flask import Flask, url_for, request, render_template
 app = Flask(__name__)
 
 @app.route('/')
@@ -58,22 +58,8 @@ def parameters():
     else:
         return "Hello %s" % name
 
-@app.route("/upload/", methods=['POST', 'GET'])
-def upload():
-    if request.method == 'POST':
-        f = request.files['datafile']
-        f.save('static/uploads/file.png')
-        return "File uploaded"
-    else:
-        page = '''
-         <html>
-         <body>
-            <form action="" method="post" name="form" enctype="multipart/form-data">
-                <input type="file" name="datafile"/>
-                <input type="submit" name="submit" id="submit"/>
-            </form>
-        </body>
-        <html>
-        '''
+@app.route('/jinga/<name>')
+def template(name=None):
+    user = {'name' : name}
+    return render_template('conditional.html', user=user)
 
-        return page, 200
