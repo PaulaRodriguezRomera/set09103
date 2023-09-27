@@ -63,3 +63,19 @@ def template(name=None):
     user = {'name' : name}
     return render_template('conditional.html', user=user)
 
+@app.route('/users/')
+def users():
+    names = ['simon', 'thomas', 'paula', 'jaime', 'sylvester']
+    return render_template('loops.html', names=names)
+
+@app.route('/inherits/')
+def inherits():
+    return render_template('base.html')
+
+@app.route('/inherits/one/')
+def inherits_one():
+    return render_template('inherits1.html')
+
+@app.route('/inherits/two/')
+def inherits_two():
+    return render_template('inherits2.html')
