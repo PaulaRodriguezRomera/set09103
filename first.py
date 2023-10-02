@@ -1,8 +1,9 @@
-from flask import Flask, url_for, request, render_template
+from flask import Flask,flash, url_for, request, render_template, session, redirect
 app = Flask(__name__)
+app.secret_key = 'A0Zr98j/3 yX R~XHH!jmN]LWX/,? RT'
 
 @app.route('/')
-def root():
+def index():
     return 'Default root'
 
 @app.route('/good-morning/')
@@ -79,3 +80,31 @@ def inherits_one():
 @app.route('/inherits/two/')
 def inherits_two():
     return render_template('inherits2.html')
+
+@app.route('/session/write/<name>/')
+def write(name=None):
+    session['name'] = name
+    return 'Wrote %s into "name" key of session' % name
+@app.route('/session/read')
+def read():
+    try:
+        if(session['name']):
+            return str(session['name'])
+    except KeyError:
+        pass
+    return "No session variable set for 'name' key"
+
+@app.route('/session/remove/')
+def remove():
+    session.pop('name', None)
+    return "Removed key 'name' from session"
+
+
+@app.route('/login/')
+@app.route('/login/<message>')
+def login(message=None):
+    if (message != None):
+        flash(message)
+    else:
+        flash(u'A default message')
+    return redirect(url_for('index'))
