@@ -108,3 +108,7 @@ def login(message=None):
     else:
         flash(u'A default message')
     return redirect(url_for('index'))
+
+@app.route('/style/')
+def style():
+    return render_template('boostrap_demo.html'), 200
